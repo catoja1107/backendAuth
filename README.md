@@ -1,5 +1,5 @@
-# backendAuth
+# main.py
 Backend authentication. Checks with defined DB for creds.
 
-#Crack.py
+# crack.py
 Brute forces salt+pass for defined hash list.
