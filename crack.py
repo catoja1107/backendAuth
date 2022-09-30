@@ -30,8 +30,8 @@ def crack():
         for b in range(k, l+1):  # check every pass for single UID at a time
             tmpb = '{:>04}'  # 4 digits min, zero prefix
             resb = tmpb.format(str(b))  # formats pass to include trailing 0's
-            test = computeMD5hash(resa + resb)  # salt + pass
-            if test in hashArray: print("Password:", resb, "; Salt:", resa, "; Hash match:", test)
+            test = computeMD5hash(resb + resa)  # pass + salt
+            if test in hashArray: print("Password:", resb + "; Salt:", resa + "; Hash match:", test)
 
 
 def main():
