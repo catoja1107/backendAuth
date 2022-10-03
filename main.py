@@ -21,29 +21,18 @@ def computeMD5hash(my_string):
 
 
 def getSalt():
-    fileName = input("Enter salt file name: ")
-    saltArray = []
-    try:
-        f = open(fileName, 'r', encoding="utf-8")
-    except:
-        print("File not found")
-    finally:
-        with open(fileName, encoding="utf-8") as f:
-            for line in f:
-                saltArray = f.read().splitlines()
-        f.close()
-        return saltArray
+    salt = input("Enter salt: ")
+    return salt
 
 
 def getUID():
-    fileName = input("Enter UID file name: ")
     UIDArray = []
     try:
-        f = open(fileName, 'r', encoding="utf-8")
+        f = open("UID.txt", 'r', encoding="utf-8")
     except:
         print("File not found")
     finally:
-        with open(fileName, encoding="utf-8") as f:
+        with open("UID.txt", encoding="utf-8") as f:
             for line in f:
                 UIDArray = f.read().splitlines()
         f.close()
@@ -51,44 +40,30 @@ def getUID():
 
 
 def getPass():
-    fileName = input("Enter Password file name: ")
-    passArray = []
-    try:
-        f = open(fileName, 'r', encoding="utf-8")
-    except:
-        print("File not found")
-    finally:
-        with open(fileName, encoding="utf-8") as f:
-            for line in f:
-                passArray = f.read().splitlines()
-        f.close()
-    return passArray
+    passw = input("Please input password: ")
+    return passw
 
 
 def cmpHash():
-    fileName = input("Enter HASH list file name: ")
     hashArray = []
     try:
-        f = open(fileName, 'r', encoding="utf-8")
+        f = open("Hash.txt", 'r', encoding="utf-8")
     except:
         print("File not found")
     finally:
-        with open(fileName, encoding="utf-8") as f:
+        with open("Hash.txt", encoding="utf-8") as f:
             for line in f:
-                hashArray = f.read().splitlines()
+                hashArray.append(f.read().splitlines())
         f.close()
-        # computedHashArray = computeMD5hash(getPass(), getSalt())
-        # for i in uid, call computeMD5hash(getPass[i]+getSalt[i])
-        UID = getUID()
         password = getPass()
         salt = getSalt()
-        computedHashArray = []
-        # print(UID, password, salt)
-        for i in range(len(password)):
-            computedHashArray.append(computeMD5hash(password[i] + salt[i]))
-        for i in range(len(hashArray)):
-            if i in range(len(computedHashArray)):
-                print("Credentials in database:", "UID", UID[i], "| PASS", password[i], "| SALT", salt[i], "| MD5", hashArray[i], computedHashArray[i])
+        computedhash = computeMD5hash(password+salt)
+        print(computedhash)
+        print(hashArray[0])
+        if (computedhash in hashArray):
+            print("Credentials in database.")
+        else:
+            print("Credentials not in database.")
 
 
 def main():
