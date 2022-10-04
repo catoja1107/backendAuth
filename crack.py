@@ -15,9 +15,8 @@ def crack():
     except:
         print("File not found")
     finally:
-        with open("Hash.txt", encoding="utf-8") as f:
-            for line in f:
-                hashArray = f.read().splitlines()
+        lines = f.readlines()
+        hashArray = [line.rstrip() for line in lines]
     f.close()
     i = 000  # UID salt lower bound
     j = 100  # UID salt upper bound
