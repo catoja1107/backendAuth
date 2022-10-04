@@ -2,4 +2,4 @@
 Backend authentication. Checks with defined DB for creds.
 
 # crack.py
-Brute forces salt+pass for defined hash list.
+Brute forces pass+salt for defined hash list.
