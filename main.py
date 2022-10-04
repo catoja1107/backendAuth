@@ -51,15 +51,12 @@ def cmpHash():
     except:
         print("File not found")
     finally:
-        with open("Hash.txt", encoding="utf-8") as f:
-            for line in f:
-                hashArray.append(f.read().splitlines())
+        lines = f.readlines()
+        hashArray = [line.rstrip() for line in lines]
         f.close()
         password = getPass()
         salt = getSalt()
         computedhash = computeMD5hash(password+salt)
-        print(computedhash)
-        print(hashArray[0])
         if (computedhash in hashArray):
             print("Credentials in database.")
         else:
